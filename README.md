@@ -1,5 +1,6 @@
 ## Python file encrytptor and decryptor
 ![Python version badge](https://img.shields.io/badge/python-3.9-blue) ![App version badge](https://img.shields.io/badge/version-1.0.0-lightgrey) ![App version badge](https://img.shields.io/badge/dependencies-recent-green)
+
 This program provides functions to aply symmetric encryption to any file 
 from the command line.
 

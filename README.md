@@ -27,6 +27,6 @@ If there is an error and the "--showerrors" is activated, the program prompts an
 
 ---
 ### Dependencies
-python 3.9
-docopt
-cryptography
+[python 3.9](https://www.python.org/)
+[cryptography](https://pypi.org/project/cryptography/)
+[docopt](https://pypi.org/project/docopt/)

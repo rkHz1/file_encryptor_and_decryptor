@@ -18,7 +18,7 @@ def encrypyFile(filePath, outputFilename, key):
 
     # creates key model
     kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=b"salt", iterations=100000)
-    extension = '\n'+Path(filePath).suffix # encodes file extensions
+    extension = Path(filePath).suffix.encode() # encodes file extensions
     
     # creates fernet with key
     key = key.encode()
@@ -37,9 +37,9 @@ def encrypyFile(filePath, outputFilename, key):
     FileString = FileToCrypt.read()
     FileToCrypt.close()
 
-    # writes a ".txt" file with crypted data and extension
+    # writes a ".txt" file with encrypted data and encrypted extension
     EncriptRecord = open(DIR + "\\files\\" + outputFilename + ".txt", 'wb+')
-    EncriptRecord.write(f.encrypt(FileString) + extension.encode())
+    EncriptRecord.write(f.encrypt(FileString) + '\n'.encode() + f.encrypt(extension))
     EncriptRecord.close()
 
     return key.decode()
@@ -73,10 +73,10 @@ def decryptFile(filePath, outputfilename, key):
     try:
         DecryptedData = f.decrypt(EncriptedFileData[0])
     except:
-        raise exeptions.invalidkey
+        raise exeptions.invalidKey
 
     # write decryted data with extension
-    FileToDecrypt = open(path.abspath(DIR + '\\files\\' + outputfilename +EncriptedFileData[1].decode()), 'wb+')
+    FileToDecrypt = open(path.abspath(DIR + '\\files\\' + outputfilename + f.decrypt(EncriptedFileData[1]).decode()), 'wb+')
     FileToDecrypt.write(DecryptedData)
     FileToDecrypt.close()
     
